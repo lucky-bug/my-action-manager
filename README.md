@@ -6,7 +6,7 @@ This is a helper/utility project meant to help developers.
 
 ## Installation
 
-1. Clone the repository to a directory, "00my" for example.
+1. Clone the repository to a directory, `00my` for example.
   ```bash
   git clone https://github.com/lucky-bug/my-action-manager.git 00my
   ```
