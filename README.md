@@ -14,28 +14,28 @@ This is a helper/utility project meant to help developers.
   ```php
   <?php
 
-declare(strict_types = 1);
+  declare(strict_types = 1);
 
-require_once '00my/bootstrap.php';
+  require_once '00my/bootstrap.php';
 
-use My\Action;
-use My\ActionManager;
+  use My\Action;
+  use My\ActionManager;
 
-$actions = [
-  'risky' => function() {
-    echo 'Hello, World!';
-  },
-  'safe'  => new Action(
-    function() {
-      echo 'Hello, World';
+  $actions = [
+    'risky' => function() {
+      echo 'Hello, World!';
     },
-    false
-  ),
-];
+    'safe'  => new Action(
+      function() {
+        echo 'Hello, World';
+      },
+      false
+    ),
+  ];
 
-$action_manager = ActionManager::instance();
-$action_manager->load($actions);
-$action_manager->run();
+  $action_manager = ActionManager::instance();
+  $action_manager->load($actions);
+  $action_manager->run();
 
   ```
 3. Run the code.
