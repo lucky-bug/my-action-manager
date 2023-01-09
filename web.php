@@ -230,18 +230,13 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 /** @var Preformatted[] $preformatted_list */
-$preformatted_list = $_SESSION['preformatted_list'] ?? [];
+$preformatted_list = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $name   = $action_helper->resolveExecutedActionName();
   $action = $action_manager->getActionRegistry()->resolve($name);
 
-  if ($action === null) {
-    $preformatted_list[] = new Preformatted(
-      'Validation',
-      'Action not found: ' . $name
-    );
-  } elseif ($confirmation_helper->isConfirmed($action)) {
+  if ($action && $confirmation_helper->isConfirmed($action)) {
     $preformatted_list = $action_manager->handle(
       $action,
       $parameters_helper->resolveArguments($action)
@@ -250,6 +245,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (count($preformatted_list) === 0) {
       $preformatted_list[] = new Preformatted('Status', 'Done');
     }
+  } elseif ($action === null) {
+    $preformatted_list[] = new Preformatted(
+      'Validation',
+      'Action not found: ' . $name
+    );
   } else {
     $preformatted_list[] = new Preformatted(
       'Validation',
@@ -260,6 +260,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $_SESSION['preformatted_list'] = $preformatted_list;
   header('Location: #' . $name);
   exit;
+} else {
+  $preformatted_list = $_SESSION['preformatted_list'] ?? $preformatted_list;
 }
 
 ?>
