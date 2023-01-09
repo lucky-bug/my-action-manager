@@ -41,3 +41,13 @@ This is a helper/utility project meant to help developers.
 
   ```
 3. Run the code.
+
+## Screenshots
+
+### Dark mode
+
+<img width="1245" alt="Dark mode" src="https://user-images.githubusercontent.com/38420292/211242516-ad598218-198a-4ea1-bab1-858c4fb60b8f.png">
+
+### Light mode
+
+<img width="1248" alt="Light mode" src="https://user-images.githubusercontent.com/38420292/211242428-9e191d3f-8294-47ca-a51d-d7a6d82a9bb2.png">
