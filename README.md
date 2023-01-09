@@ -21,21 +21,23 @@ This is a helper/utility project meant to help developers.
   use My\Action;
   use My\ActionManager;
 
-  $actions = [
-    'risky' => function() {
-      echo 'Hello, World!';
-    },
-    'safe'  => new Action(
-      function() {
-        echo 'Hello, World';
+  (function() {
+    $action_manager = ActionManager::instance();
+    
+    $action_manager->load([
+      'risky' => function() {
+        echo 'Hello, World!';
       },
-      false
-    ),
-  ];
+      'safe'  => new Action(
+        function() {
+          echo 'Hello, World';
+        },
+        false
+      ),
+    ]);
 
-  $action_manager = ActionManager::instance();
-  $action_manager->load($actions);
-  $action_manager->run();
+    $action_manager->run();
+  })();
 
   ```
 3. Run the code.
